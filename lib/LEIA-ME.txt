@@ -1,0 +1,89 @@
+# 📚 BIBLIOTECAS NECESSÁRIAS
+
+## Para executar o projeto, você precisa baixar os seguintes arquivos JAR:
+
+### 1. MySQL Connector/J (OBRIGATÓRIO)
+- **Nome:** mysql-connector-java-8.0.33.jar
+- **Link:** https://dev.mysql.com/downloads/connector/j/
+- **Descrição:** Driver JDBC para conectar ao MySQL
+- **Local:** Copiar para `lib/`
+
+### 2. JSTL - JavaServer Pages Standard Tag Library (OBRIGATÓRIO)
+- **Nome:** jstl-1.2.jar
+- **Link:** https://mvnrepository.com/artifact/javax.servlet/jstl/1.2
+- **Descrição:** Tag library para JSP
+- **Local:** Copiar para `lib/`
+
+### 3. Standard Tag Library Implementation (OBRIGATÓRIO para alguns servidores)
+- **Nome:** standard-1.1.2.jar
+- **Link:** https://mvnrepository.com/artifact/taglibs/standard/1.1.2
+- **Descrição:** Implementação padrão da JSTL
+- **Local:** Copiar para `lib/`
+
+---
+
+## OU use Maven para gerenciar dependências:
+
+Se preferir usar Maven, adicione ao `pom.xml`:
+
+```xml
+<dependencies>
+    <!-- MySQL Driver -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.33</version>
+    </dependency>
+    
+    <!-- JSTL -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+    
+    <!-- Servlet API (provided pelo Tomcat) -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+    
+    <!-- JSP API (provided pelo Tomcat) -->
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>2.3.3</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+```
+
+---
+
+## Instruções de Download Manual:
+
+1. Acesse os links acima
+2. Faça o download dos arquivos .jar
+3. Crie a pasta `lib/` no diretório do projeto (se não existir)
+4. Copie todos os arquivos .jar para a pasta `lib/`
+5. Adicione os JARs ao classpath do projeto na sua IDE
+
+---
+
+## Para Eclipse:
+1. Clique com botão direito no projeto
+2. Build Path → Configure Build Path
+3. Libraries → Add External JARs
+4. Selecione os JARs da pasta `lib/`
+
+## Para IntelliJ IDEA:
+1. File → Project Structure
+2. Modules → Dependencies
+3. Clique no `+` → JARs or directories
+4. Selecione os JARs da pasta `lib/`
+
+---
+
+**IMPORTANTE:** O Tomcat já inclui as APIs de Servlet e JSP, então você NÃO precisa baixá-las separadamente se estiver usando Tomcat 9.0+

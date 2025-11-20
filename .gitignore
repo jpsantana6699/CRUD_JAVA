@@ -1,0 +1,19 @@
+# Arquivos compilados
+build/
+*.class
+
+# Logs
+*.log
+
+# Arquivos temporarios
+*.tmp
+*.bak
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Sistema
+.DS_Store
+Thumbs.db
