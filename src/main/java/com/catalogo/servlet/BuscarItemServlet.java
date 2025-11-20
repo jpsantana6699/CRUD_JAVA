@@ -1,5 +1,4 @@
-package com.catalogo.servlet;
-
+﻿package com.catalogo.servlet;
 import com.catalogo.model.ItemMidia;
 import com.catalogo.service.ItemMidiaService;
 import javax.servlet.ServletException;
@@ -9,78 +8,44 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
-/**
- * Servlet responsável pela busca de itens de mídia.
- * 
- * @author João Pedro Santana
- * @version 1.0
- */
 public class BuscarItemServlet extends HttpServlet {
-    
     private ItemMidiaService service;
-    
     @Override
     public void init() throws ServletException {
         service = new ItemMidiaService();
     }
-    
-    /**
-     * Realiza a busca por termo ou por tipo de mídia.
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
         try {
             String termo = request.getParameter("termo");
             String tipo = request.getParameter("tipo");
-            
             List<ItemMidia> resultados;
-            
-            // Busca por tipo específico
             if (tipo != null && !tipo.trim().isEmpty() && !tipo.equals("Todos")) {
                 resultados = service.buscarItensPorTipo(tipo);
                 request.setAttribute("tipoBusca", tipo);
-                
-            // Busca por termo (título ou autor/diretor)
             } else if (termo != null && !termo.trim().isEmpty()) {
                 resultados = service.buscarItensPorTermo(termo);
                 request.setAttribute("termoBusca", termo);
-                
-            // Se não houver filtros, lista todos
             } else {
                 resultados = service.listarTodosItens();
             }
-            
-            // Define os resultados como atributo
             request.setAttribute("itens", resultados);
-            
-            // Mensagem se não houver resultados
             if (resultados.isEmpty()) {
                 request.setAttribute("mensagem", "Nenhum item encontrado.");
             }
-            
-            // Encaminha para a página de busca
             request.getRequestDispatcher("/buscar.jsp").forward(request, response);
-            
         } catch (IllegalArgumentException e) {
             request.setAttribute("erro", e.getMessage());
             request.getRequestDispatcher("/buscar.jsp").forward(request, response);
-            
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("erro", "Erro ao realizar busca: " + e.getMessage());
             request.getRequestDispatcher("/buscar.jsp").forward(request, response);
         }
     }
-    
-    /**
-     * Também aceita POST para buscas via formulário.
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
