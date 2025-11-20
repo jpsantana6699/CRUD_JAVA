@@ -9,7 +9,7 @@ Sistema web desenvolvido em Java para catalogar e gerenciar livros e filmes, imp
 ## 👨‍🎓 Informações do Projeto
 
 - **Autor:** João Pedro Santana
-- **Curso:** Engenharia de Software / Ciência da Computação
+- **Curso:** Ciência da Computação
 - **Data:** Novembro de 2025
 - **Disciplina:** Programação Web / Java Web
 
